@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.3.10.RELEASE'
+}
+
+wrapper {
+    gradleVersion = '7.0'
+}
+
+repositories {
+    // https://docs.gradle.org/current/userguide/declaring_repositories.html
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter:2.4.8'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.4.8'
+    implementation 'org.springframework.boot:spring-boot-starter-aop:2.4.8'
+}
