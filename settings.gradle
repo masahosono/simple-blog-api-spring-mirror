@@ -1,0 +1,5 @@
+rootProject.name = 'simple-blog-api-spring'
+include 'presentation'
+include 'infrastructure'
+include 'application'
+include 'domain'
