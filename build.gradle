@@ -7,13 +7,23 @@ wrapper {
     gradleVersion = '7.0'
 }
 
-repositories {
-    // https://docs.gradle.org/current/userguide/declaring_repositories.html
-    mavenCentral()
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation('org.springframework.boot:spring-boot-starter:2.4.8')
+        implementation('org.springframework.boot:spring-boot-starter-web:2.4.8')
+        implementation('org.springframework.boot:spring-boot-starter-aop:2.4.8')
+        compileOnly 'org.projectlombok:lombok:1.18.20'
+        annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    }
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter:2.4.8'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.4.8'
-    implementation 'org.springframework.boot:spring-boot-starter-aop:2.4.8'
+    implementation project(':presentation')
 }
