@@ -8,13 +8,13 @@ import lombok.Builder;
 public class GetArticleResponse {
 
     @JsonProperty("id")
-    private int id;
+    private String id;
 
     @JsonProperty("title")
     private String title;
 
     @JsonProperty("categoryId")
-    private String categoryId;
+    private int categoryId;
 
     @JsonProperty("createDate")
     private Date createDate;
@@ -25,6 +25,4 @@ public class GetArticleResponse {
     @JsonProperty("text")
     private String text;
 
-    @JsonProperty("disp")
-    private int disp;
 }

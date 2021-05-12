@@ -27,7 +27,6 @@ public class GetArticleResponseFactory {
                                 .createDate(article.getCreateDate())
                                 .updateDate(article.getUpdateDate())
                                 .text(article.getText())
-                                .disp(article.getDisp())
                                 .build())
                 .collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
     }
