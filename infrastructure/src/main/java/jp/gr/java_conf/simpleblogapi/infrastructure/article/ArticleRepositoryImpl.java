@@ -19,8 +19,8 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     public ArticleList getArticle() {
 
         String query = "SELECT * FROM article " +
-                "WHERE disp_flg = 1" +
-                "ORDER BY id DESC ";
+                "WHERE disp_flg = 1 " +
+                "ORDER BY id DESC";
 
         try {
             List<ArticleEntity> articles =
