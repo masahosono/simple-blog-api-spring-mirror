@@ -15,5 +15,6 @@ public class ArticleEntity {
     private Date update_date_time;
     private String description;
     private String text;
+    private int disp_flg;
 
 }
