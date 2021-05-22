@@ -26,6 +26,7 @@ public class GetArticleResponseFactory {
                                 .categoryId(article.getCategoryId())
                                 .createDate(article.getCreateDate())
                                 .updateDate(article.getUpdateDate())
+                                .description(article.getDescription())
                                 .text(article.getText())
                                 .build())
                 .collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));

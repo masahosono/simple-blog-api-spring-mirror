@@ -1,5 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.application.article;
 
+import jp.gr.java_conf.simpleblogapi.domain.article.Article;
 import jp.gr.java_conf.simpleblogapi.domain.article.ArticleList;
 import jp.gr.java_conf.simpleblogapi.domain.article.ArticleRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,10 @@ public class ArticleService {
 
     public ArticleList getArticle() {
         return articleRepository.getArticle();
+    }
+
+    public Article getArticleById(String articleId) {
+        return articleRepository.getArticleById(articleId);
     }
 
     public int getArticleCount() {

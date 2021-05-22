@@ -4,6 +4,8 @@ public interface ArticleRepository {
 
     ArticleList getArticle();
 
+    Article getArticleById(String id);
+
     int getArticleCount();
 
 }
