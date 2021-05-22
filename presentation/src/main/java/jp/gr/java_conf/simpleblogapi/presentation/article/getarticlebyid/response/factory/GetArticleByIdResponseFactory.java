@@ -6,15 +6,17 @@ import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.respons
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.response.ErrorResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.response.GetArticleByIdResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.response.ResultResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.shared.HttpStatusCodeConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class GetArticleByIdResponseFactory {
+
+    private final HttpStatusCodeConverter httpStatusCodeConverter;
 
     public GetArticleByIdResponse createForSuccess(GetArticleByIdResultDto getArticleByIdResultDto) {
         return GetArticleByIdResponse.builder()
@@ -47,7 +49,7 @@ public class GetArticleByIdResponseFactory {
 
     ErrorResponse createError(RuntimeException exception) {
         return ErrorResponse.builder()
-                .httpStatus(HttpStatus.BAD_REQUEST)
+                .httpStatus(httpStatusCodeConverter.from(exception))
                 .message(exception.getMessage())
                 .build();
     }
