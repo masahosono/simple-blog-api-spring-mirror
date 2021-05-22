@@ -15,14 +15,15 @@ public class GetArticleByIdResponseFactory {
     public GetArticleByIdResponse create(GetArticleByIdResultDto getArticleByIdResultDto) {
 
         Article article = getArticleByIdResultDto.getArticle();
-        return GetArticleByIdResponse.builder()
-                .id(article.getId())
-                .title(article.getTitle())
-                .categoryId(article.getCategoryId())
-                .createDateTIme(article.getCreateDate())
-                .updateDateTime(article.getUpdateDate())
-                .text(article.getText())
-                .build();
+//        return GetArticleByIdResponse.builder()
+//                .id(article.getId())
+//                .title(article.getTitle())
+//                .categoryId(article.getCategoryId())
+//                .createDateTIme(article.getCreateDate())
+//                .updateDateTime(article.getUpdateDate())
+//                .text(article.getText())
+//                .build();
+        return null;
     }
 
 }
