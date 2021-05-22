@@ -54,13 +54,18 @@ public class ArticleController {
     public ResponseEntity<GetArticleByIdResponse> getArticleById(
             @PathVariable("id") String id) {
 
-        GetArticleByIdArgsDto getArticleByIdArgsDto =
-                getArticleByIdArgsDtoFactory.create(id);
+        GetArticleByIdResponse response;
+        try {
+            GetArticleByIdArgsDto getArticleByIdArgsDto =
+                    getArticleByIdArgsDtoFactory.create(id);
 
-        GetArticleByIdResultDto getArticleByIdResultDto =
-                getArticleByIdService.getArticleById(getArticleByIdArgsDto);
+            GetArticleByIdResultDto getArticleByIdResultDto =
+                    getArticleByIdService.getArticleById(getArticleByIdArgsDto);
 
-        GetArticleByIdResponse response = getArticleByIdResponseFactory.create(getArticleByIdResultDto);
+            response = getArticleByIdResponseFactory.createForSuccess(getArticleByIdResultDto);
+        } catch (RuntimeException exception) {
+            response = getArticleByIdResponseFactory.createForError(exception);
+        }
 
         return getArticleByIdResponseEntityFactory.create(response);
     }
