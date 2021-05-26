@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.domain.article.ArticleList;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticleResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticlesResponse;
 import org.springframework.stereotype.Component;
 
 @Component

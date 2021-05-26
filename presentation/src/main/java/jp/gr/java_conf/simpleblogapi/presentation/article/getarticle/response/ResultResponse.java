@@ -5,8 +5,9 @@ import java.util.List;
 import lombok.Builder;
 
 @Builder
-public class GetArticlesResponse {
+public class ResultResponse {
 
     @JsonProperty("articles")
-    private List<GetArticleResponse> articles;
+    private List<ArticleResponse> articles;
+
 }

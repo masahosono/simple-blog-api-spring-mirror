@@ -1,6 +1,5 @@
 package jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.factory;
 
-import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticlesResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
