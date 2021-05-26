@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class GetArticleResponseFactory {
 
-    public GetArticlesResponse create(GetArticleResultDto getArticleResultDto) {
-        return GetArticlesResponse.builder()
+    public GetArticleResponse create(GetArticleResultDto getArticleResultDto) {
+        return GetArticleResponse.builder()
                 .articles(createArticles(getArticleResultDto.getArticleList()))
                 .build();
     }

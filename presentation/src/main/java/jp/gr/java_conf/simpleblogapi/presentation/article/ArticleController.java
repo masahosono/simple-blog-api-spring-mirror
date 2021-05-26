@@ -7,6 +7,7 @@ import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdResul
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response.DeleteArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.response.EditArticleResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.factory.GetArticleResponseFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.factory.GetArticleResponseEntityFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.request.dto.factory.GetArticleByIdArgsDtoFactory;
@@ -41,7 +42,7 @@ public class ArticleController {
     private final GetArticleByIdResponseFactory getArticleByIdResponseFactory;
 
     @GetMapping(path = "/api/article", produces = "application/json")
-    public ResponseEntity<GetArticlesResponse> getArticle() {
+    public ResponseEntity<GetArticleResponse> getArticle() {
         GetArticleResultDto getArticleResultDto =
                 getArticleScenarioService.getArticle();
 
