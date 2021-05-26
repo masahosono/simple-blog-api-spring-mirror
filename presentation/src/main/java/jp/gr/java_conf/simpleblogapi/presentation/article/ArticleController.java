@@ -43,11 +43,16 @@ public class ArticleController {
 
     @GetMapping(path = "/api/article", produces = "application/json")
     public ResponseEntity<GetArticleResponse> getArticle() {
-        GetArticleResultDto getArticleResultDto =
-                getArticleScenarioService.getArticle();
+        GetArticleResponse response;
+        try {
+            GetArticleResultDto getArticleResultDto =
+                    getArticleScenarioService.getArticle();
+            response = getArticleResponseFactory.createForSuccess(getArticleResultDto);
+        } catch (RuntimeException exception) {
+            response = getArticleResponseFactory.createForError(exception);
+        }
 
-        return getArticleResponseEntityFactory.create(
-                getArticleResponseFactory.create(getArticleResultDto));
+        return getArticleResponseEntityFactory.create(response);
     }
 
     @GetMapping(path = "/api/article/{id}", produces = "application/json")
