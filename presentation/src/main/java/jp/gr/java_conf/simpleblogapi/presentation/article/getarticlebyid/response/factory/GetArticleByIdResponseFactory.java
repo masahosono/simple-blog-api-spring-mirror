@@ -36,7 +36,7 @@ public class GetArticleByIdResponseFactory {
                 .title(article.getTitle())
                 .categoryId(article.getCategoryId())
                 .createDateTIme(article.getCreateDate())
-                .updateDateTime(article.getCreateDate())
+                .updateDateTime(article.getUpdateDate())
                 .text(article.getText())
                 .build();
     }
