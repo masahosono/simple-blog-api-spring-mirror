@@ -9,4 +9,10 @@ import lombok.RequiredArgsConstructor;
 public class ArticleList {
 
     private final List<Article> articles;
+
+    public int getArticleCountByCategoryId(int categoryId) {
+        return (int) articles.stream()
+                .filter(article -> article.getCategoryId() == categoryId)
+                .count();
+    }
 }
