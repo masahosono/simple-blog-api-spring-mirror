@@ -14,7 +14,7 @@ public class ResolvedArticle {
     private final String categoryName;
     private final Date createDateTime;
     private final Date updateDateTime;
-    private final String descrition;
+    private final String description;
     private final String text;
 
 }

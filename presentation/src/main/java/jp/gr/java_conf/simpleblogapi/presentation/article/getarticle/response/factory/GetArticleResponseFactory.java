@@ -1,7 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.factory;
 
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto;
-import jp.gr.java_conf.simpleblogapi.domain.article.ArticleList;
 import jp.gr.java_conf.simpleblogapi.domain.article.ResolvedArticleList;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.ArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.ErrorResponse;
@@ -42,7 +41,7 @@ public class GetArticleResponseFactory {
                                 .categoryName(article.getCategoryName())
                                 .createDateTIme(article.getCreateDateTime())
                                 .updateDateTime(article.getUpdateDateTime())
-                                .description(article.getDescrition())
+                                .description(article.getDescription())
                                 .text(article.getText())
                                 .build())
                 .collect(
