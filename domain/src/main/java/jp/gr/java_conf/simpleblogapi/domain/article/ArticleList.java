@@ -1,7 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.domain.article;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import jp.gr.java_conf.simpleblogapi.domain.category.CategoryList;
 import lombok.Getter;
@@ -29,8 +28,8 @@ public class ArticleList {
                                 article.getTitle(),
                                 article.getCategoryId(),
                                 categoryList.getCategoryNameByCategoryId(article.getCategoryId()),
-                                article.getCreateDate(),
-                                article.getUpdateDate(),
+                                article.getCreateDateTime(),
+                                article.getUpdateDateTime(),
                                 article.getDescription(),
                                 article.getText()
                         ))

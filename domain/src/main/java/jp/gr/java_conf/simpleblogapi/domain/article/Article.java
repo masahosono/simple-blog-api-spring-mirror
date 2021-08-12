@@ -11,8 +11,8 @@ public class Article {
     private final String id;
     private final String title;
     private final int categoryId;
-    private final Date createDate;
-    private final Date updateDate;
+    private final Date createDateTime;
+    private final Date updateDateTime;
     private final String description;
     private final String text;
 }
