@@ -2,6 +2,7 @@ package jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.f
 
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.domain.article.ArticleList;
+import jp.gr.java_conf.simpleblogapi.domain.article.ResolvedArticleList;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.ArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.ErrorResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticleResponse;
@@ -27,20 +28,21 @@ public class GetArticleResponseFactory {
 
     ResultResponse createResultResponse(GetArticleResultDto getArticleResultDto) {
         return ResultResponse.builder()
-                .articles(createArticles(getArticleResultDto.getArticleList()))
+                .articles(createArticles(getArticleResultDto.getResolvedArticleList()))
                 .build();
     }
 
-    List<ArticleResponse> createArticles(ArticleList articleList) {
-        return articleList.getArticles().stream()
+    List<ArticleResponse> createArticles(ResolvedArticleList resolvedArticleList) {
+        return resolvedArticleList.getArticles().stream()
                 .map(article ->
                         ArticleResponse.builder()
                                 .id(article.getId())
                                 .title(article.getTitle())
                                 .categoryId(article.getCategoryId())
-                                .createDateTIme(article.getCreateDate())
-                                .updateDateTime(article.getUpdateDate())
-                                .description(article.getDescription())
+                                .categoryName(article.getCategoryName())
+                                .createDateTIme(article.getCreateDateTime())
+                                .updateDateTime(article.getUpdateDateTime())
+                                .description(article.getDescrition())
                                 .text(article.getText())
                                 .build())
                 .collect(
