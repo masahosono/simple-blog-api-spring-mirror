@@ -26,6 +26,12 @@ public class ArticleService {
     }
 
     public void registerArticle(PostArticleArgsDto postArticleArgsDto) {
+        articleRepository.registerArticle(
+                postArticleArgsDto.getTitle(),
+                postArticleArgsDto.getCategoryId(),
+                postArticleArgsDto.getDescription(),
+                postArticleArgsDto.getText(),
+                postArticleArgsDto.getLocalDateTime());
     }
 
 }

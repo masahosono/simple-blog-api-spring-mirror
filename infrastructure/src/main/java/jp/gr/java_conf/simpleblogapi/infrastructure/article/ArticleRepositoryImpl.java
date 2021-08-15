@@ -1,5 +1,7 @@
 package jp.gr.java_conf.simpleblogapi.infrastructure.article;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import jp.gr.java_conf.simpleblogapi.domain.article.Article;
 import jp.gr.java_conf.simpleblogapi.domain.article.ArticleList;
@@ -61,6 +63,32 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
             return articlesCount.get(0).getCount();
         } catch (RuntimeException exception) {
+            throw new ArticleDatabaseException("Failed to connect the article table.");
+        }
+    }
+
+    public void registerArticle(
+            String title,
+            int categoryId,
+            String description,
+            String text,
+            LocalDateTime localDateTime) {
+
+        String query = "INSERT INTO article(" +
+                "id, title, category_id, create_date_time, update_date_time, description, text, disp_flg) " +
+                "VALUES(?,?,?,?,?,?,?,?)";
+        try {
+            jdbcTemplate.update(
+                    query,
+                    localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")),
+                    title,
+                    categoryId,
+                    localDateTime,
+                    localDateTime,
+                    description,
+                    text,
+                    1);
+        } catch (RuntimeException exception) { // TODO: SQLIntegrityConstraintViolationExceptionをキャッチしたい
             throw new ArticleDatabaseException("Failed to connect the article table.");
         }
     }
