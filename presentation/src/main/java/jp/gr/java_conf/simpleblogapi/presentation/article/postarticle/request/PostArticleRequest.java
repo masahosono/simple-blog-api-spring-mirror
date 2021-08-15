@@ -10,7 +10,7 @@ public class PostArticleRequest {
     private String title;
 
     @JsonProperty("categoryId")
-    private String categoryId;
+    private int categoryId;
 
     @JsonProperty("description")
     private String description;
