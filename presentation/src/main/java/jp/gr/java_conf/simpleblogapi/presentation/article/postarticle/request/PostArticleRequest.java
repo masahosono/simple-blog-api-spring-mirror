@@ -12,6 +12,9 @@ public class PostArticleRequest {
     @JsonProperty("categoryId")
     private String categoryId;
 
+    @JsonProperty("description")
+    private String description;
+
     @JsonProperty("text")
     private String text;
 
