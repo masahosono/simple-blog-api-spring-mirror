@@ -2,7 +2,6 @@ package jp.gr.java_conf.simpleblogapi.domain.datetime;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
