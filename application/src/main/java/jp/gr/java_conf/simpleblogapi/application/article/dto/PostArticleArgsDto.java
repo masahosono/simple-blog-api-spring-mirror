@@ -1,6 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.application.article.dto;
 
-import java.time.LocalDateTime;
+import jp.gr.java_conf.simpleblogapi.domain.datetime.RequestedDateTime;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -12,5 +12,5 @@ public class PostArticleArgsDto {
     private final int categoryId;
     private final String description;
     private final String text;
-    private final LocalDateTime localDateTime;
+    private final RequestedDateTime requestedDateTime;
 }

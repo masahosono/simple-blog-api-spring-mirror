@@ -96,7 +96,7 @@ public class ArticleController {
         PostArticleResponse response;
         try {
             PostArticleArgsDto postArticleArgsDto =
-                    postArticleArgsDtoFactory.create(requestBody, requestedDateTime.value());
+                    postArticleArgsDtoFactory.create(requestBody, requestedDateTime);
 
             PostArticleResultDto postArticleResultDto =
                     registerArticleService.registerArticle(postArticleArgsDto);

@@ -31,7 +31,7 @@ public class ArticleService {
                 postArticleArgsDto.getCategoryId(),
                 postArticleArgsDto.getDescription(),
                 postArticleArgsDto.getText(),
-                postArticleArgsDto.getLocalDateTime());
+                postArticleArgsDto.getRequestedDateTime().getValue());
     }
 
 }

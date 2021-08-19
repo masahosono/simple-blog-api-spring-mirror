@@ -1,6 +1,5 @@
 package jp.gr.java_conf.simpleblogapi.application.article;
 
-import java.time.format.DateTimeFormatter;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.application.category.CategoryService;
@@ -23,7 +22,7 @@ public class RegisterArticleService {
         articleService.registerArticle(postArticleArgsDto);
 
         Article article = articleService.getArticleById(
-                postArticleArgsDto.getLocalDateTime().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+                postArticleArgsDto.getRequestedDateTime().format());
 
         CategoryList categoryList = categoryService.getCategory();
 
