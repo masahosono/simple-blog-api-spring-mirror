@@ -9,6 +9,7 @@ import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdResul
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleResultDto;
+import jp.gr.java_conf.simpleblogapi.domain.datetime.RequestedDateTime;
 import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response.DeleteArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.response.EditArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticleResponse;
@@ -89,14 +90,13 @@ public class ArticleController {
 
     @PostMapping(path = "/api/article", produces = "application/json")
     public ResponseEntity<PostArticleResponse> postArticle(
-            @RequestBody PostArticleRequest requestBody) {
-
-        LocalDateTime now = LocalDateTime.now();
+            @RequestBody PostArticleRequest requestBody,
+            RequestedDateTime requestedDateTime) {
 
         PostArticleResponse response;
         try {
             PostArticleArgsDto postArticleArgsDto =
-                    postArticleArgsDtoFactory.create(requestBody, now);
+                    postArticleArgsDtoFactory.create(requestBody, requestedDateTime.value());
 
             PostArticleResultDto postArticleResultDto =
                     registerArticleService.registerArticle(postArticleArgsDto);
