@@ -12,4 +12,6 @@ public interface ArticleRepository {
 
     void registerArticle(String title, int categoryId, String description, String text, LocalDateTime localDateTime);
 
+    void eidtArticle(String id, String title, int categoryId, String description, String text, LocalDateTime localDateTime);
+
 }

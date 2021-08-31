@@ -1,5 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.application.article;
 
+import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.domain.article.Article;
 import jp.gr.java_conf.simpleblogapi.domain.article.ArticleList;
@@ -32,6 +33,16 @@ public class ArticleService {
                 postArticleArgsDto.getDescription(),
                 postArticleArgsDto.getText(),
                 postArticleArgsDto.getRequestedDateTime().getValue());
+    }
+
+    public void editArticle(EditArticleArgsDto editArticleArgsDto) {
+        articleRepository.eidtArticle(
+                editArticleArgsDto.getId(),
+                editArticleArgsDto.getTitle(),
+                editArticleArgsDto.getCategoryId(),
+                editArticleArgsDto.getDescription(),
+                editArticleArgsDto.getText(),
+                editArticleArgsDto.getRequestedDateTime().getValue());
     }
 
 }
