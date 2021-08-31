@@ -10,7 +10,10 @@ public class EditArticleRequest {
     private String title;
 
     @JsonProperty("categoryId")
-    private String categoryId;
+    private int categoryId;
+
+    @JsonProperty("description")
+    private String description;
 
     @JsonProperty("text")
     private String text;

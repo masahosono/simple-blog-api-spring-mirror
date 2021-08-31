@@ -3,6 +3,7 @@ package jp.gr.java_conf.simpleblogapi.presentation.article;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleByIdService;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.RegisterArticleService;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdResultDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto;
@@ -11,6 +12,7 @@ import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleResultDt
 import jp.gr.java_conf.simpleblogapi.domain.datetime.RequestedDateTime;
 import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response.DeleteArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.request.EditArticleRequest;
+import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.request.factory.EditArticleArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.response.EditArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.factory.GetArticleResponseFactory;
@@ -53,6 +55,8 @@ public class ArticleController {
     private final PostArticleArgsDtoFactory postArticleArgsDtoFactory;
     private final PostArticleResponseFactory postArticleResponseFactory;
     private final PostArticleResponseEntityFactory postArticleResponseEntityFactory;
+
+    private final EditArticleArgsDtoFactory editArticleArgsDtoFactory;
 
     @GetMapping(path = "/api/article", produces = "application/json")
     public ResponseEntity<GetArticleResponse> getArticle() {
@@ -114,6 +118,9 @@ public class ArticleController {
             @PathVariable("id") String id,
             @RequestBody EditArticleRequest requestBody,
             RequestedDateTime requestedDateTime) {
+
+        EditArticleArgsDto editArticleArgsDto =
+                editArticleArgsDtoFactory.create(id, requestBody, requestedDateTime);
         return null;
     }
 
