@@ -1,6 +1,5 @@
 package jp.gr.java_conf.simpleblogapi.presentation.article;
 
-import java.time.LocalDateTime;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleByIdService;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.RegisterArticleService;
@@ -11,6 +10,7 @@ import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.domain.datetime.RequestedDateTime;
 import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response.DeleteArticleResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.request.EditArticleRequest;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.response.EditArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.factory.GetArticleResponseFactory;
@@ -109,8 +109,11 @@ public class ArticleController {
         return postArticleResponseEntityFactory.create(response);
     }
 
-    @PutMapping(path = "/api/article", produces = "application/json")
-    public ResponseEntity<EditArticleResponse> putArticle() {
+    @PutMapping(path = "/api/articles/{id}", produces = "application/json")
+    public ResponseEntity<EditArticleResponse> editArticle(
+            @PathVariable("id") String id,
+            @RequestBody EditArticleRequest requestBody,
+            RequestedDateTime requestedDateTime) {
         return null;
     }
 
