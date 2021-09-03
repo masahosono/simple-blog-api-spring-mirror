@@ -1,9 +1,11 @@
 package jp.gr.java_conf.simpleblogapi.presentation.article;
 
+import jp.gr.java_conf.simpleblogapi.application.article.EditArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleByIdService;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.RegisterArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleArgsDto;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdResultDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto;
@@ -14,6 +16,8 @@ import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.request.EditArticleRequest;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.request.factory.EditArticleArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.response.EditArticleResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.response.factory.EditArticleResponseEntityFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.response.factory.EditArticleResponseFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.GetArticleResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.factory.GetArticleResponseFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticle.response.factory.GetArticleResponseEntityFactory;
@@ -56,7 +60,10 @@ public class ArticleController {
     private final PostArticleResponseFactory postArticleResponseFactory;
     private final PostArticleResponseEntityFactory postArticleResponseEntityFactory;
 
+    private final EditArticleService editArticleService;
     private final EditArticleArgsDtoFactory editArticleArgsDtoFactory;
+    private final EditArticleResponseFactory editArticleResponseFactory;
+    private final EditArticleResponseEntityFactory editArticleResponseEntityFactory;
 
     @GetMapping(path = "/api/article", produces = "application/json")
     public ResponseEntity<GetArticleResponse> getArticle() {
@@ -113,15 +120,26 @@ public class ArticleController {
         return postArticleResponseEntityFactory.create(response);
     }
 
-    @PutMapping(path = "/api/articles/{id}", produces = "application/json")
+    @PutMapping(path = "/api/article/{id}", produces = "application/json")
     public ResponseEntity<EditArticleResponse> editArticle(
             @PathVariable("id") String id,
             @RequestBody EditArticleRequest requestBody,
             RequestedDateTime requestedDateTime) {
 
-        EditArticleArgsDto editArticleArgsDto =
-                editArticleArgsDtoFactory.create(id, requestBody, requestedDateTime);
-        return null;
+        EditArticleResponse response;
+        try {
+            EditArticleArgsDto editArticleArgsDto =
+                    editArticleArgsDtoFactory.create(id, requestBody, requestedDateTime);
+
+            EditArticleResultDto editArticleResultDto =
+                    editArticleService.editArticle(editArticleArgsDto);
+
+            response = editArticleResponseFactory.createForSuccess(editArticleResultDto);
+        } catch (RuntimeException exception) {
+            response = editArticleResponseFactory.createForError(exception);
+        }
+
+        return editArticleResponseEntityFactory.create(response);
     }
 
     @DeleteMapping(path = "/api/article", produces = "application/json")
