@@ -93,4 +93,30 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         }
     }
 
+    public void editArticle(
+            String id,
+            String title,
+            int categoryId,
+            String description,
+            String text,
+            LocalDateTime localDateTime) {
+
+        String query = "UPDATE article " +
+                "SET title = ?, category_id = ?, update_date_time = ?, description = ?, text = ? " +
+                "WHERE id = ?";
+        try {
+            jdbcTemplate.update(
+                    query,
+                    title,
+                    categoryId,
+                    localDateTime,
+                    description,
+                    text,
+                    id);
+        } catch (RuntimeException exception) {
+            throw new ArticleDatabaseException("Failed to connect the article table.");
+        }
+    }
+
+
 }
