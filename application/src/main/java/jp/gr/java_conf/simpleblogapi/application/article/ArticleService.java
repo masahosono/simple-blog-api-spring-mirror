@@ -36,7 +36,7 @@ public class ArticleService {
     }
 
     public void editArticle(EditArticleArgsDto editArticleArgsDto) {
-        articleRepository.eidtArticle(
+        articleRepository.editArticle(
                 editArticleArgsDto.getId(),
                 editArticleArgsDto.getTitle(),
                 editArticleArgsDto.getCategoryId(),
