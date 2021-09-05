@@ -1,9 +1,11 @@
 package jp.gr.java_conf.simpleblogapi.presentation.article;
 
+import jp.gr.java_conf.simpleblogapi.application.article.DeleteArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.EditArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleByIdService;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.RegisterArticleService;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.DeleteArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdArgsDto;
@@ -12,7 +14,10 @@ import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.domain.datetime.RequestedDateTime;
+import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.request.dto.factory.DeleteArticleArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response.DeleteArticleResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response.factory.DeleteArticleResponseEntityFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response.factory.DeleteArticleResponseFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.request.EditArticleRequest;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.request.factory.EditArticleArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.editarticle.response.EditArticleResponse;
@@ -64,6 +69,11 @@ public class ArticleController {
     private final EditArticleArgsDtoFactory editArticleArgsDtoFactory;
     private final EditArticleResponseFactory editArticleResponseFactory;
     private final EditArticleResponseEntityFactory editArticleResponseEntityFactory;
+
+    private final DeleteArticleService deleteArticleService;
+    private final DeleteArticleArgsDtoFactory deleteArticleArgsDtoFactory;
+    private final DeleteArticleResponseFactory deleteArticleResponseFactory;
+    private final DeleteArticleResponseEntityFactory deleteArticleResponseEntityFactory;
 
     @GetMapping(path = "/api/article", produces = "application/json")
     public ResponseEntity<GetArticleResponse> getArticle() {
@@ -142,9 +152,21 @@ public class ArticleController {
         return editArticleResponseEntityFactory.create(response);
     }
 
-    @DeleteMapping(path = "/api/article", produces = "application/json")
-    public ResponseEntity<DeleteArticleResponse> deleteArticle() {
-        return null;
+    @DeleteMapping(path = "/api/article/{id}", produces = "application/json")
+    public ResponseEntity<DeleteArticleResponse> deleteArticle(
+            @PathVariable("id") String id) {
+
+        DeleteArticleResponse response;
+        try {
+            DeleteArticleArgsDto deleteArticleArgsDto = deleteArticleArgsDtoFactory.create(id);
+            deleteArticleService.deleteArticle(deleteArticleArgsDto);
+
+            response = deleteArticleResponseFactory.createForSuccess();
+        } catch (RuntimeException exception) {
+            response = deleteArticleResponseFactory.createForError(exception);
+        }
+
+        return deleteArticleResponseEntityFactory.create(response);
     }
 
 }

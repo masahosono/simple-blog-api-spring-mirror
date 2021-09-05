@@ -1,5 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.application.article;
 
+import jp.gr.java_conf.simpleblogapi.application.article.dto.DeleteArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.domain.article.Article;
@@ -43,6 +44,11 @@ public class ArticleService {
                 editArticleArgsDto.getDescription(),
                 editArticleArgsDto.getText(),
                 editArticleArgsDto.getRequestedDateTime().getValue());
+    }
+
+    public void deleteArticle(DeleteArticleArgsDto deleteArticleArgsDto) {
+        articleRepository.deleteArticle(
+                deleteArticleArgsDto.getId());
     }
 
 }
