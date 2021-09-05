@@ -57,8 +57,8 @@ public class ArticleController {
 
     private final GetArticleByIdService getArticleByIdService;
     private final GetArticleByIdArgsDtoFactory getArticleByIdArgsDtoFactory;
-    private final GetArticleByIdResponseEntityFactory getArticleByIdResponseEntityFactory;
     private final GetArticleByIdResponseFactory getArticleByIdResponseFactory;
+    private final GetArticleByIdResponseEntityFactory getArticleByIdResponseEntityFactory;
 
     private final RegisterArticleService registerArticleService;
     private final PostArticleArgsDtoFactory postArticleArgsDtoFactory;
