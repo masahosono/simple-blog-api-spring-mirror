@@ -118,5 +118,17 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         }
     }
 
+    public void deleteArticle(String id) {
+
+        String query = "DELETE FROM article WHERE id = ?";
+        try {
+            jdbcTemplate.update(
+                    query,
+                    id);
+        } catch (RuntimeException exception) {
+            throw new ArticleDatabaseException("Failed to connect the article table.");
+        }
+    }
+
 
 }

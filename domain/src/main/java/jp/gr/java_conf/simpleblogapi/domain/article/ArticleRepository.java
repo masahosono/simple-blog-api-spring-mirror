@@ -14,4 +14,6 @@ public interface ArticleRepository {
 
     void editArticle(String id, String title, int categoryId, String description, String text, LocalDateTime localDateTime);
 
+    void deleteArticle(String id);
+
 }
