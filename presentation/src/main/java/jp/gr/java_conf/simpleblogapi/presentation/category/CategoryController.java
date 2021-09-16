@@ -2,10 +2,12 @@ package jp.gr.java_conf.simpleblogapi.presentation.category;
 
 import jp.gr.java_conf.simpleblogapi.application.category.GetCategoryService;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.GetCategoriesResultDto;
+import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.GetCategoryResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.factory.GetCategoryResponseEntityFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.factory.GetCategoryResponseFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.request.PostCategoryRequest;
+import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.request.dto.factory.RegisterCategoryArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.PostCategoryResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,8 @@ public class CategoryController {
     private final GetCategoryService getCategoryService;
     private final GetCategoryResponseFactory getCategoryResponseFactory;
     private final GetCategoryResponseEntityFactory getCategoryResponseEntityFactory;
+
+    private final RegisterCategoryArgsDtoFactory registerCategoryArgsDtoFactory;
 
     @GetMapping(path = "/api/category", produces = "application/json")
     public ResponseEntity<GetCategoryResponse> getCategory() {
@@ -42,6 +46,9 @@ public class CategoryController {
     @PostMapping(path = "/api/category", produces = "application/json")
     public ResponseEntity<PostCategoryResponse> postCategory(
             @RequestBody PostCategoryRequest requestBody) {
+
+        RegisterCategoryArgsDto registerCategoryArgsDto =
+                registerCategoryArgsDtoFactory.factory(requestBody);
 
         return null;
     }
