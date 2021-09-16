@@ -4,4 +4,8 @@ public interface CategoryRepository {
 
     CategoryList getCategory();
 
+    Category getCategoryById(int id);
+
+    int registerCategory(String name, Integer parentId);
+
 }

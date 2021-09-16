@@ -1,5 +1,7 @@
 package jp.gr.java_conf.simpleblogapi.application.category;
 
+import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryArgsDto;
+import jp.gr.java_conf.simpleblogapi.domain.category.Category;
 import jp.gr.java_conf.simpleblogapi.domain.category.CategoryList;
 import jp.gr.java_conf.simpleblogapi.domain.category.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,4 +17,16 @@ public class CategoryService {
         CategoryList categoryList = categoryRepository.getCategory();
         return categoryList;
     }
+
+    public Category getCategoryById(int id) {
+        Category category = categoryRepository.getCategoryById(id);
+        return category;
+    }
+
+    public int registerCategory(RegisterCategoryArgsDto registerCategoryArgsDto) {
+        return categoryRepository.registerCategory(
+                registerCategoryArgsDto.getName(),
+                registerCategoryArgsDto.getParentId());
+    }
+
 }
