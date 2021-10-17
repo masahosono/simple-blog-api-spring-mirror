@@ -14,13 +14,11 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     public CategoryList getCategory() {
-        CategoryList categoryList = categoryRepository.getCategory();
-        return categoryList;
+        return categoryRepository.getCategory();
     }
 
     public Category getCategoryById(int id) {
-        Category category = categoryRepository.getCategoryById(id);
-        return category;
+        return categoryRepository.getCategoryById(id);
     }
 
     public int registerCategory(RegisterCategoryArgsDto registerCategoryArgsDto) {
