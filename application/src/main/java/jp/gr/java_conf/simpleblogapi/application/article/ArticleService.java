@@ -2,7 +2,7 @@ package jp.gr.java_conf.simpleblogapi.application.article;
 
 import jp.gr.java_conf.simpleblogapi.application.article.dto.DeleteArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleArgsDto;
-import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.RegisterArticleArgsDto;
 import jp.gr.java_conf.simpleblogapi.domain.article.Article;
 import jp.gr.java_conf.simpleblogapi.domain.article.ArticleList;
 import jp.gr.java_conf.simpleblogapi.domain.article.ArticleRepository;
@@ -27,13 +27,13 @@ public class ArticleService {
         return articleRepository.getArticleCount();
     }
 
-    public void registerArticle(PostArticleArgsDto postArticleArgsDto) {
+    public void registerArticle(RegisterArticleArgsDto registerArticleArgsDto) {
         articleRepository.registerArticle(
-                postArticleArgsDto.getTitle(),
-                postArticleArgsDto.getCategoryId(),
-                postArticleArgsDto.getDescription(),
-                postArticleArgsDto.getText(),
-                postArticleArgsDto.getRequestedDateTime().getValue());
+                registerArticleArgsDto.getTitle(),
+                registerArticleArgsDto.getCategoryId(),
+                registerArticleArgsDto.getDescription(),
+                registerArticleArgsDto.getText(),
+                registerArticleArgsDto.getRequestedDateTime().getValue());
     }
 
     public void editArticle(EditArticleArgsDto editArticleArgsDto) {

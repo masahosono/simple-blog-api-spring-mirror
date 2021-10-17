@@ -1,7 +1,7 @@
-package jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.factory;
+package jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.factory;
 
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.ErrorResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.PostArticleResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.ErrorResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.RegisterArticleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PostArticleResponseEntityFactory {
+public class RegisterArticleResponseEntityFactory {
 
-    public ResponseEntity<PostArticleResponse> create(PostArticleResponse response) {
+    public ResponseEntity<RegisterArticleResponse> create(RegisterArticleResponse response) {
         return new ResponseEntity<>(
                 response,
                 resolvedHttpStatus(response.getError()));

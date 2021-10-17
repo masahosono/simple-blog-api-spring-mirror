@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor(staticName = "of")
-public class PostArticleResultDto {
+public class RegisterArticleResultDto {
 
     private final ResolvedArticle resolvedArticle;
 

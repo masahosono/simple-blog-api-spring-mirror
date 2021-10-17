@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(staticName = "of")
 @Getter
-public class PostArticleArgsDto {
+public class RegisterArticleArgsDto {
 
     private final String title;
     private final int categoryId;

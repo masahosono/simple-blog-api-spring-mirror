@@ -11,8 +11,8 @@ import jp.gr.java_conf.simpleblogapi.application.article.dto.EditArticleResultDt
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleByIdResultDto;
 import jp.gr.java_conf.simpleblogapi.application.article.dto.GetArticleResultDto;
-import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
-import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleResultDto;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.RegisterArticleArgsDto;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.RegisterArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.domain.datetime.RequestedDateTime;
 import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.request.dto.factory.DeleteArticleArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.deletearticle.response.DeleteArticleResponse;
@@ -30,11 +30,11 @@ import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.request
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.response.GetArticleByIdResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.response.factory.GetArticleByIdResponseEntityFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.article.getarticlebyid.response.factory.GetArticleByIdResponseFactory;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.request.PostArticleRequest;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.request.dto.factory.PostArticleArgsDtoFactory;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.PostArticleResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.factory.PostArticleResponseEntityFactory;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.factory.PostArticleResponseFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.request.RegisterArticleRequest;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.request.dto.factory.RegisterArticleArgsDtoFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.RegisterArticleResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.factory.RegisterArticleResponseEntityFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.factory.RegisterArticleResponseFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -61,9 +61,9 @@ public class ArticleController {
     private final GetArticleByIdResponseEntityFactory getArticleByIdResponseEntityFactory;
 
     private final RegisterArticleService registerArticleService;
-    private final PostArticleArgsDtoFactory postArticleArgsDtoFactory;
-    private final PostArticleResponseFactory postArticleResponseFactory;
-    private final PostArticleResponseEntityFactory postArticleResponseEntityFactory;
+    private final RegisterArticleArgsDtoFactory registerArticleArgsDtoFactory;
+    private final RegisterArticleResponseFactory registerArticleResponseFactory;
+    private final RegisterArticleResponseEntityFactory registerArticleResponseEntityFactory;
 
     private final EditArticleService editArticleService;
     private final EditArticleArgsDtoFactory editArticleArgsDtoFactory;
@@ -110,24 +110,24 @@ public class ArticleController {
     }
 
     @PostMapping(path = "/api/article", produces = "application/json")
-    public ResponseEntity<PostArticleResponse> postArticle(
-            @RequestBody PostArticleRequest requestBody,
+    public ResponseEntity<RegisterArticleResponse> registerArticle(
+            @RequestBody RegisterArticleRequest requestBody,
             RequestedDateTime requestedDateTime) {
 
-        PostArticleResponse response;
+        RegisterArticleResponse response;
         try {
-            PostArticleArgsDto postArticleArgsDto =
-                    postArticleArgsDtoFactory.create(requestBody, requestedDateTime);
+            RegisterArticleArgsDto registerArticleArgsDto =
+                    registerArticleArgsDtoFactory.create(requestBody, requestedDateTime);
 
-            PostArticleResultDto postArticleResultDto =
-                    registerArticleService.registerArticle(postArticleArgsDto);
+            RegisterArticleResultDto registerArticleResultDto =
+                    registerArticleService.registerArticle(registerArticleArgsDto);
 
-            response = postArticleResponseFactory.createForSuccess(postArticleResultDto);
+            response = registerArticleResponseFactory.createForSuccess(registerArticleResultDto);
         } catch (RuntimeException exception) {
-            response = postArticleResponseFactory.createForError(exception);
+            response = registerArticleResponseFactory.createForError(exception);
         }
 
-        return postArticleResponseEntityFactory.create(response);
+        return registerArticleResponseEntityFactory.create(response);
     }
 
     @PutMapping(path = "/api/article/{id}", produces = "application/json")

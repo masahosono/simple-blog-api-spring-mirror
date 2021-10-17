@@ -1,10 +1,10 @@
-package jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.request;
+package jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public class PostArticleRequest {
+public class RegisterArticleRequest {
 
     @JsonProperty("title")
     private String title;

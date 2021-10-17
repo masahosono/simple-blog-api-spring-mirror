@@ -1,7 +1,7 @@
 package jp.gr.java_conf.simpleblogapi.application.article;
 
-import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleArgsDto;
-import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleResultDto;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.RegisterArticleArgsDto;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.RegisterArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.application.category.CategoryService;
 import jp.gr.java_conf.simpleblogapi.domain.article.Article;
 import jp.gr.java_conf.simpleblogapi.domain.article.ResolvedArticle;
@@ -16,18 +16,18 @@ public class RegisterArticleService {
     private final ArticleService articleService;
     private final CategoryService categoryService;
 
-    public PostArticleResultDto registerArticle(
-            PostArticleArgsDto postArticleArgsDto) {
+    public RegisterArticleResultDto registerArticle(
+            RegisterArticleArgsDto registerArticleArgsDto) {
 
-        articleService.registerArticle(postArticleArgsDto);
+        articleService.registerArticle(registerArticleArgsDto);
 
         Article article = articleService.getArticleById(
-                postArticleArgsDto.getRequestedDateTime().format());
+                registerArticleArgsDto.getRequestedDateTime().format());
 
         CategoryList categoryList = categoryService.getCategory();
 
         ResolvedArticle resolvedArticle = article.resolve(categoryList);
 
-        return PostArticleResultDto.of(resolvedArticle);
+        return RegisterArticleResultDto.of(resolvedArticle);
     }
 }

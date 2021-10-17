@@ -1,24 +1,24 @@
-package jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.factory;
+package jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.factory;
 
-import jp.gr.java_conf.simpleblogapi.application.article.dto.PostArticleResultDto;
+import jp.gr.java_conf.simpleblogapi.application.article.dto.RegisterArticleResultDto;
 import jp.gr.java_conf.simpleblogapi.domain.article.ResolvedArticle;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.ArticleResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.ErrorResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.PostArticleResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response.ResultResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.ArticleResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.ErrorResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.RegisterArticleResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response.ResultResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.shared.HttpStatusCodeConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PostArticleResponseFactory {
+public class RegisterArticleResponseFactory {
 
     private final HttpStatusCodeConverter httpStatusCodeConverter;
 
-    public PostArticleResponse createForSuccess(PostArticleResultDto postArticleResultDto) {
-        return PostArticleResponse.builder()
-                .result(createResultResponse(postArticleResultDto.getResolvedArticle()))
+    public RegisterArticleResponse createForSuccess(RegisterArticleResultDto registerArticleResultDto) {
+        return RegisterArticleResponse.builder()
+                .result(createResultResponse(registerArticleResultDto.getResolvedArticle()))
                 .build();
     }
 
@@ -41,8 +41,8 @@ public class PostArticleResponseFactory {
                 .build();
     }
 
-    public PostArticleResponse createForError(RuntimeException exception) {
-        return PostArticleResponse.builder()
+    public RegisterArticleResponse createForError(RuntimeException exception) {
+        return RegisterArticleResponse.builder()
                 .error(createError(exception))
                 .build();
     }

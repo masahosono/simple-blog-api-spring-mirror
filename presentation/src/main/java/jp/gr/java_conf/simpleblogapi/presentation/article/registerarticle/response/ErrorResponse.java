@@ -1,4 +1,4 @@
-package jp.gr.java_conf.simpleblogapi.presentation.article.postarticle.response;
+package jp.gr.java_conf.simpleblogapi.presentation.article.registerarticle.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
