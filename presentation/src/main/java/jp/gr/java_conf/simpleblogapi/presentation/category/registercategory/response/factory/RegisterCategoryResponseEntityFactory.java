@@ -1,7 +1,7 @@
-package jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.factory;
+package jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.factory;
 
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.ErrorResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.PostCategoryResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.ErrorResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.RegisterCategoryResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PostCategoryResponseEntityFactory {
+public class RegisterCategoryResponseEntityFactory {
 
-    public ResponseEntity<PostCategoryResponse> create(PostCategoryResponse response) {
+    public ResponseEntity<RegisterCategoryResponse> create(RegisterCategoryResponse response) {
         return new ResponseEntity<>(
                 response,
                 resolvedHttpStatus(response.getError()));

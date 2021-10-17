@@ -1,18 +1,18 @@
-package jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.factory;
+package jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.factory;
 
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryResultDto;
 import jp.gr.java_conf.simpleblogapi.domain.category.ResolvedCategory;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.CategoryResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.ErrorResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.PostCategoryResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.ResultResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.CategoryResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.ErrorResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.RegisterCategoryResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.ResultResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PostCategoryResponseFactory {
+public class RegisterCategoryResponseFactory {
 
-    public PostCategoryResponse createForSuccess(RegisterCategoryResultDto registerCategoryResultDto) {
-        return PostCategoryResponse.builder()
+    public RegisterCategoryResponse createForSuccess(RegisterCategoryResultDto registerCategoryResultDto) {
+        return RegisterCategoryResponse.builder()
                 .result(createResultResponse(registerCategoryResultDto.getCategory()))
                 .build();
     }
@@ -31,8 +31,8 @@ public class PostCategoryResponseFactory {
                 .build();
     }
 
-    public PostCategoryResponse createForError(RuntimeException exception) {
-        return PostCategoryResponse.builder()
+    public RegisterCategoryResponse createForError(RuntimeException exception) {
+        return RegisterCategoryResponse.builder()
                 .error(createError(exception))
                 .build();
     }

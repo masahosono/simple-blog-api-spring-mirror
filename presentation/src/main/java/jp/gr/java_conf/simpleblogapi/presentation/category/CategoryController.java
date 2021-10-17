@@ -8,11 +8,11 @@ import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryRe
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.GetCategoryResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.factory.GetCategoryResponseEntityFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.factory.GetCategoryResponseFactory;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.request.PostCategoryRequest;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.request.dto.factory.RegisterCategoryArgsDtoFactory;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.PostCategoryResponse;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.factory.PostCategoryResponseEntityFactory;
-import jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.response.factory.PostCategoryResponseFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.request.RegisterCategoryRequest;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.request.dto.factory.RegisterCategoryArgsDtoFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.RegisterCategoryResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.factory.RegisterCategoryResponseEntityFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.response.factory.RegisterCategoryResponseFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -32,8 +32,8 @@ public class CategoryController {
 
     private final RegisterCategoryService registerCategoryService;
     private final RegisterCategoryArgsDtoFactory registerCategoryArgsDtoFactory;
-    private final PostCategoryResponseFactory postCategoryResponseFactory;
-    private final PostCategoryResponseEntityFactory postCategoryResponseEntityFactory;
+    private final RegisterCategoryResponseFactory registerCategoryResponseFactory;
+    private final RegisterCategoryResponseEntityFactory registerCategoryResponseEntityFactory;
 
     @GetMapping(path = "/api/category", produces = "application/json")
     public ResponseEntity<GetCategoryResponse> getCategory() {
@@ -51,10 +51,10 @@ public class CategoryController {
     }
 
     @PostMapping(path = "/api/category", produces = "application/json")
-    public ResponseEntity<PostCategoryResponse> postCategory(
-            @RequestBody PostCategoryRequest requestBody) {
+    public ResponseEntity<RegisterCategoryResponse> registerCategory(
+            @RequestBody RegisterCategoryRequest requestBody) {
 
-        PostCategoryResponse response;
+        RegisterCategoryResponse response;
         try {
             RegisterCategoryArgsDto registerCategoryArgsDto =
                     registerCategoryArgsDtoFactory.factory(requestBody);
@@ -62,11 +62,11 @@ public class CategoryController {
             RegisterCategoryResultDto registerCategoryResultDto
                     = registerCategoryService.registerCategory(registerCategoryArgsDto);
 
-            response = postCategoryResponseFactory.createForSuccess(registerCategoryResultDto);
+            response = registerCategoryResponseFactory.createForSuccess(registerCategoryResultDto);
         } catch (RuntimeException exception) {
-            response = postCategoryResponseFactory.createForError(exception);
+            response = registerCategoryResponseFactory.createForError(exception);
         }
 
-        return postCategoryResponseEntityFactory.create(response);
+        return registerCategoryResponseEntityFactory.create(response);
     }
 }

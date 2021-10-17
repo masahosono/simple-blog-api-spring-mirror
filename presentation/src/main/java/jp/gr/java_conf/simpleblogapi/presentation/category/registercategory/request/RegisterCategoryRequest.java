@@ -1,10 +1,10 @@
-package jp.gr.java_conf.simpleblogapi.presentation.category.postcategory.request;
+package jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public class PostCategoryRequest {
+public class RegisterCategoryRequest {
 
     @JsonProperty("name")
     private String name;
