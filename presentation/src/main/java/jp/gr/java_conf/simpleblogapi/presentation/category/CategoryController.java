@@ -2,11 +2,13 @@ package jp.gr.java_conf.simpleblogapi.presentation.category;
 
 import jp.gr.java_conf.simpleblogapi.application.category.GetCategoryService;
 import jp.gr.java_conf.simpleblogapi.application.category.RegisterCategoryService;
+import jp.gr.java_conf.simpleblogapi.application.category.dto.EditCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.GetCategoriesResultDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryResultDto;
 import jp.gr.java_conf.simpleblogapi.presentation.category.deletecategory.response.DeleteCategoryResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.request.EditCategoryRequest;
+import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.request.dto.factory.EditCategoryArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.response.EditCategoryResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.GetCategoryResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.factory.GetCategoryResponseEntityFactory;
@@ -40,6 +42,8 @@ public class CategoryController {
     private final RegisterCategoryArgsDtoFactory registerCategoryArgsDtoFactory;
     private final RegisterCategoryResponseFactory registerCategoryResponseFactory;
     private final RegisterCategoryResponseEntityFactory registerCategoryResponseEntityFactory;
+
+    private final EditCategoryArgsDtoFactory editCategoryArgsDtoFactory;
 
     @GetMapping(path = "/api/category", produces = "application/json")
     public ResponseEntity<GetCategoryResponse> getCategory() {
@@ -80,6 +84,10 @@ public class CategoryController {
     public ResponseEntity<EditCategoryResponse> editCategory(
             @RequestBody EditCategoryRequest requestBody,
             @PathVariable("id") int id) {
+
+        EditCategoryArgsDto editCategoryArgsDto =
+                editCategoryArgsDtoFactory.factory(requestBody, id);
+
 
         return null;
     }
