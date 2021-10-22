@@ -5,6 +5,7 @@ import jp.gr.java_conf.simpleblogapi.application.category.RegisterCategoryServic
 import jp.gr.java_conf.simpleblogapi.application.category.dto.GetCategoriesResultDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryResultDto;
+import jp.gr.java_conf.simpleblogapi.presentation.category.deletecategory.response.DeleteCategoryResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.request.EditCategoryRequest;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.response.EditCategoryResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.GetCategoryResponse;
@@ -18,6 +19,7 @@ import jp.gr.java_conf.simpleblogapi.presentation.category.registercategory.resp
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,6 +79,13 @@ public class CategoryController {
     @PutMapping(path = "/api/category/{id}", produces = "application/json")
     public ResponseEntity<EditCategoryResponse> editCategory(
             @RequestBody EditCategoryRequest requestBody,
+            @PathVariable("id") int id) {
+
+        return null;
+    }
+
+    @DeleteMapping(path = "/api/category/{id}", produces = "application/json")
+    public ResponseEntity<DeleteCategoryResponse> deleteCategory(
             @PathVariable("id") int id) {
 
         return null;
