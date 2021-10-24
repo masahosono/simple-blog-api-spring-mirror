@@ -59,4 +59,20 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         }
     }
 
+    public void editCategory(int id, String name, Integer parentId) {
+        String query = "UPDATE category " +
+                "SET name = ?, parent_id = ? " +
+                "WHERE id = ?";
+
+        try {
+            jdbcTemplate.update(
+                    query,
+                    name,
+                    parentId,
+                    id);
+        } catch (RuntimeException exception) {
+            throw new CategoryDatabaseException("Failed to connect the category table.");
+        }
+    }
+
 }

@@ -1,8 +1,10 @@
 package jp.gr.java_conf.simpleblogapi.presentation.category;
 
+import jp.gr.java_conf.simpleblogapi.application.category.EditCategoryService;
 import jp.gr.java_conf.simpleblogapi.application.category.GetCategoryService;
 import jp.gr.java_conf.simpleblogapi.application.category.RegisterCategoryService;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.EditCategoryArgsDto;
+import jp.gr.java_conf.simpleblogapi.application.category.dto.EditCategoryResultDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.GetCategoriesResultDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryResultDto;
@@ -10,6 +12,8 @@ import jp.gr.java_conf.simpleblogapi.presentation.category.deletecategory.respon
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.request.EditCategoryRequest;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.request.dto.factory.EditCategoryArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.response.EditCategoryResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.response.factory.EditCategoryResponseEntityFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.response.factory.EditCategoryResponseFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.GetCategoryResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.factory.GetCategoryResponseEntityFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.getcategory.response.factory.GetCategoryResponseFactory;
@@ -43,7 +47,11 @@ public class CategoryController {
     private final RegisterCategoryResponseFactory registerCategoryResponseFactory;
     private final RegisterCategoryResponseEntityFactory registerCategoryResponseEntityFactory;
 
+    private final EditCategoryService editCategoryService;
     private final EditCategoryArgsDtoFactory editCategoryArgsDtoFactory;
+    private final EditCategoryResponseFactory editCategoryResponseFactory;
+    private final EditCategoryResponseEntityFactory editCategoryResponseEntityFactory;
+
 
     @GetMapping(path = "/api/category", produces = "application/json")
     public ResponseEntity<GetCategoryResponse> getCategory() {
@@ -85,11 +93,20 @@ public class CategoryController {
             @RequestBody EditCategoryRequest requestBody,
             @PathVariable("id") int id) {
 
-        EditCategoryArgsDto editCategoryArgsDto =
-                editCategoryArgsDtoFactory.factory(requestBody, id);
+        EditCategoryResponse response;
+        try {
+            EditCategoryArgsDto editCategoryArgsDto =
+                    editCategoryArgsDtoFactory.factory(requestBody, id);
 
+            EditCategoryResultDto editCategoryResultDto =
+                    editCategoryService.editCategory(editCategoryArgsDto);
 
-        return null;
+            response = editCategoryResponseFactory.createForSuccess(editCategoryResultDto);
+        } catch (RuntimeException exception) {
+            response = editCategoryResponseFactory.createForError(exception);
+        }
+
+        return editCategoryResponseEntityFactory.create(response);
     }
 
     @DeleteMapping(path = "/api/category/{id}", produces = "application/json")
