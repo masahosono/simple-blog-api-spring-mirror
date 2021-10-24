@@ -1,5 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.application.category;
 
+import jp.gr.java_conf.simpleblogapi.application.category.dto.EditCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.domain.category.Category;
 import jp.gr.java_conf.simpleblogapi.domain.category.CategoryList;
@@ -25,6 +26,13 @@ public class CategoryService {
         return categoryRepository.registerCategory(
                 registerCategoryArgsDto.getName(),
                 registerCategoryArgsDto.getParentId());
+    }
+
+    void editCategory(EditCategoryArgsDto editCategoryArgsDto) {
+        categoryRepository.editCategory(
+                editCategoryArgsDto.getId(),
+                editCategoryArgsDto.getName(),
+                editCategoryArgsDto.getParentId());
     }
 
 }

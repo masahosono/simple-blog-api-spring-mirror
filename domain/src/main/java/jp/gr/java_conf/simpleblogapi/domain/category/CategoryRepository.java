@@ -8,4 +8,6 @@ public interface CategoryRepository {
 
     int registerCategory(String name, Integer parentId);
 
+    void editCategory(int id, String name, Integer parentId);
+
 }
