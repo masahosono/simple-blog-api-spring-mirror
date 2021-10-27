@@ -10,4 +10,6 @@ public interface CategoryRepository {
 
     void editCategory(int id, String name, Integer parentId);
 
+    void deleteCategory(int id);
+
 }

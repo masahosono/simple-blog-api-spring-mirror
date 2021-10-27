@@ -1,14 +1,19 @@
 package jp.gr.java_conf.simpleblogapi.presentation.category;
 
+import jp.gr.java_conf.simpleblogapi.application.category.DeleteCategoryService;
 import jp.gr.java_conf.simpleblogapi.application.category.EditCategoryService;
 import jp.gr.java_conf.simpleblogapi.application.category.GetCategoryService;
 import jp.gr.java_conf.simpleblogapi.application.category.RegisterCategoryService;
+import jp.gr.java_conf.simpleblogapi.application.category.dto.DeleteCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.EditCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.EditCategoryResultDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.GetCategoriesResultDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryResultDto;
+import jp.gr.java_conf.simpleblogapi.presentation.category.deletecategory.request.dto.factory.DeleteCategoryArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.deletecategory.response.DeleteCategoryResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.category.deletecategory.response.factory.DeleteCategoryResponseEntityFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.category.deletecategory.response.factory.DeleteCategoryResponseFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.request.EditCategoryRequest;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.request.dto.factory.EditCategoryArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.category.editcategory.response.EditCategoryResponse;
@@ -52,6 +57,10 @@ public class CategoryController {
     private final EditCategoryResponseFactory editCategoryResponseFactory;
     private final EditCategoryResponseEntityFactory editCategoryResponseEntityFactory;
 
+    private final DeleteCategoryService deleteCategoryService;
+    private final DeleteCategoryArgsDtoFactory deleteCategoryArgsDtoFactory;
+    private final DeleteCategoryResponseFactory deleteCategoryResponseFactory;
+    private final DeleteCategoryResponseEntityFactory deleteCategoryResponseEntityFactory;
 
     @GetMapping(path = "/api/category", produces = "application/json")
     public ResponseEntity<GetCategoryResponse> getCategory() {
@@ -113,6 +122,18 @@ public class CategoryController {
     public ResponseEntity<DeleteCategoryResponse> deleteCategory(
             @PathVariable("id") int id) {
 
-        return null;
+        DeleteCategoryResponse response;
+        try {
+            DeleteCategoryArgsDto deleteCategoryArgsDto =
+                    deleteCategoryArgsDtoFactory.factory(id);
+
+            deleteCategoryService.deleteCategory(deleteCategoryArgsDto);
+
+            response = deleteCategoryResponseFactory.createForSuccess();
+        } catch (RuntimeException exception) {
+            response = deleteCategoryResponseFactory.createForError(exception);
+        }
+
+        return deleteCategoryResponseEntityFactory.create(response);
     }
 }

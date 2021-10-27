@@ -75,4 +75,16 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         }
     }
 
+    public void deleteCategory(int id) {
+        String query = "DELETE FROM category WHERE id = ?";
+
+        try {
+            jdbcTemplate.update(
+                    query,
+                    id);
+        } catch (RuntimeException exception) {
+            throw new CategoryDatabaseException("Failed to connect the category table.");
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.application.category;
 
+import jp.gr.java_conf.simpleblogapi.application.category.dto.DeleteCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.EditCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.category.dto.RegisterCategoryArgsDto;
 import jp.gr.java_conf.simpleblogapi.domain.category.Category;
@@ -33,6 +34,10 @@ public class CategoryService {
                 editCategoryArgsDto.getId(),
                 editCategoryArgsDto.getName(),
                 editCategoryArgsDto.getParentId());
+    }
+
+    void deleteCategory(DeleteCategoryArgsDto deleteCategoryArgsDto) {
+        categoryRepository.deleteCategory(deleteCategoryArgsDto.getId());
     }
 
 }
