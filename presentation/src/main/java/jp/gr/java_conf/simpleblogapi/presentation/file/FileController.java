@@ -1,7 +1,9 @@
 package jp.gr.java_conf.simpleblogapi.presentation.file;
 
 import java.time.LocalDateTime;
+import jp.gr.java_conf.simpleblogapi.application.file.FileUploadService;
 import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileArgsDto;
+import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileResultDto;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.request.dto.factory.RegisterFileArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.response.PostFileResponse;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class FileController {
 
+    private final FileUploadService fileUploadService;
     private final RegisterFileArgsDtoFactory registerFileArgsDtoFactory;
 
     @PostMapping(path = "/api/file")
@@ -33,6 +36,9 @@ public class FileController {
 
         RegisterFileArgsDto registerFileArgsDto =
                 registerFileArgsDtoFactory.factory(multipartFile, localDateTime);
+
+        RegisterFileResultDto registerFileResultDto =
+                fileUploadService.registerFile(registerFileArgsDto);
 
         return null;
     }
