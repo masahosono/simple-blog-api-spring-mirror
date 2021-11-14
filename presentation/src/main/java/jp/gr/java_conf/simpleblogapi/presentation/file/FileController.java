@@ -5,6 +5,7 @@ import jp.gr.java_conf.simpleblogapi.application.file.FileUploadService;
 import jp.gr.java_conf.simpleblogapi.application.file.dto.GetFileResultDto;
 import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileResultDto;
+import jp.gr.java_conf.simpleblogapi.domain.datetime.RequestedDateTime;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.request.dto.factory.RegisterFileArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.response.PostFileResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.response.factory.PostFileResponseEntityFactory;
@@ -32,12 +33,11 @@ public class FileController {
 
     @PostMapping(path = "/api/file")
     public ResponseEntity<PostFileResponse> postFile(
-            @RequestParam MultipartFile multipartFile) {
-
-        LocalDateTime localDateTime = LocalDateTime.now();
+            @RequestParam MultipartFile multipartFile,
+            RequestedDateTime requestedDateTime) {
 
         RegisterFileArgsDto registerFileArgsDto =
-                registerFileArgsDtoFactory.factory(multipartFile, localDateTime);
+                registerFileArgsDtoFactory.factory(multipartFile, requestedDateTime.getValue());
 
         RegisterFileResultDto registerFileResultDto =
                 fileUploadService.registerFile(registerFileArgsDto);
