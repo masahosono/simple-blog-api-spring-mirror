@@ -7,6 +7,8 @@ import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileResultDto;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.request.dto.factory.RegisterFileArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.response.PostFileResponse;
+import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.response.factory.PostFileResponseEntityFactory;
+import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.response.factory.PostFileResponseFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,8 @@ public class FileController {
 
     private final FileUploadService fileUploadService;
     private final RegisterFileArgsDtoFactory registerFileArgsDtoFactory;
+    private final PostFileResponseEntityFactory postFileResponseEntityFactory;
+    private final PostFileResponseFactory postFileResponseFactory;
 
     @PostMapping(path = "/api/file")
     public ResponseEntity<PostFileResponse> postFile(
@@ -43,7 +47,8 @@ public class FileController {
         RegisterFileResultDto registerFileResultDto =
                 fileUploadService.registerFile(registerFileArgsDto);
 
-        return null;
+        return postFileResponseEntityFactory.create(
+                postFileResponseFactory.create(registerFileResultDto));
     }
 
     @GetMapping(path = "/file/{fileName}")
