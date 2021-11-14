@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@Slf4j
 @RestController
 @Component
 @RequiredArgsConstructor
@@ -36,10 +35,6 @@ public class FileController {
             @RequestParam MultipartFile multipartFile) {
 
         LocalDateTime localDateTime = LocalDateTime.now();
-
-        log.info("ContentType:　"  +  multipartFile.getContentType());
-        log.info("OriginalFileName: " + multipartFile.getOriginalFilename());
-        log.info("Size: " + String.valueOf(multipartFile.getSize()));
 
         RegisterFileArgsDto registerFileArgsDto =
                 registerFileArgsDtoFactory.factory(multipartFile, localDateTime);
