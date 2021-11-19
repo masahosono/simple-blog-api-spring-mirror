@@ -2,6 +2,7 @@ package jp.gr.java_conf.simpleblogapi.application.file;
 
 import java.time.format.DateTimeFormatter;
 import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileArgsDto;
+import jp.gr.java_conf.simpleblogapi.domain.file.File;
 import jp.gr.java_conf.simpleblogapi.domain.file.FileRepository;
 import jp.gr.java_conf.simpleblogapi.domain.file.FileType;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,11 @@ public class FileService {
         fileRepository.registerFile(registerFileArgsDto.getMultipartFile(), fileName);
 
         return fileName;
+    }
+
+    public File getFile(String fileName) {
+
+        return fileRepository.getFile(fileName);
     }
 
 }

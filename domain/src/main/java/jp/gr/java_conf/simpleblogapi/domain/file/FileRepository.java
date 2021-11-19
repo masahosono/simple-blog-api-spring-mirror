@@ -6,4 +6,6 @@ public interface FileRepository {
 
     void registerFile(MultipartFile multipartFile, String fileName);
 
+    File getFile(String fileName);
+
 }
