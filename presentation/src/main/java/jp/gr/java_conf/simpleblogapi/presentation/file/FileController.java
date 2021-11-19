@@ -7,6 +7,7 @@ import jp.gr.java_conf.simpleblogapi.application.file.dto.GetFileResultDto;
 import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileArgsDto;
 import jp.gr.java_conf.simpleblogapi.application.file.dto.RegisterFileResultDto;
 import jp.gr.java_conf.simpleblogapi.domain.datetime.RequestedDateTime;
+import jp.gr.java_conf.simpleblogapi.presentation.file.getfile.response.factory.GetFileResponseEntityFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.request.dto.factory.RegisterFileArgsDtoFactory;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.response.PostFileResponse;
 import jp.gr.java_conf.simpleblogapi.presentation.file.postfile.response.factory.PostFileResponseEntityFactory;
@@ -33,6 +34,7 @@ public class FileController {
     private final PostFileResponseFactory postFileResponseFactory;
 
     private final GetFileService getFileService;
+    private final GetFileResponseEntityFactory getFileResponseEntityFactory;
 
     @PostMapping(path = "/api/file")
     public ResponseEntity<PostFileResponse> postFile(
@@ -53,7 +55,7 @@ public class FileController {
     public ResponseEntity<byte[]> getFile(
             @PathVariable("fileName") String fileName) {
         GetFileResultDto getFileResultDto = getFileService.getFile(fileName);
-        return null;
+        return getFileResponseEntityFactory.create(getFileResultDto);
     }
 
 }
