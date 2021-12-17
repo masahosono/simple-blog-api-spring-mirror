@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
+    private final UserSignupService userSignupService;
     private final UserSignupArgsDtoFactory userSignupArgsDtoFactory;
 
     @PostMapping(value = "/api/user/signup", produces = "application/json")
     public void signup(
             @RequestBody UserSignupRequest requestBody) {
         UserSignupArgsDto userSignupArgsDto = userSignupArgsDtoFactory.factory(requestBody);
-
+        userSignupService.signup(userSignupArgsDto);
     }
 }
