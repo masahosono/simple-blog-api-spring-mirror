@@ -1,4 +1,4 @@
-package jp.gr.java_conf.simpleblogapi.presentation.user.request;
+package jp.gr.java_conf.simpleblogapi.presentation.user.signup.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
