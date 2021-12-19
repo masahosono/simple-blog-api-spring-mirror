@@ -20,7 +20,9 @@ public class UserController {
     @PostMapping(value = "/api/user/signup", produces = "application/json")
     public void signup(
             @RequestBody UserSignupRequest requestBody) {
-        UserSignupArgsDto userSignupArgsDto = userSignupArgsDtoFactory.factory(requestBody);
+        UserSignupArgsDto userSignupArgsDto =
+                userSignupArgsDtoFactory.factory(requestBody);
+
         userSignupService.signup(userSignupArgsDto);
     }
 }
