@@ -1,6 +1,5 @@
-package jp.gr.java_conf.simpleblogapi.presentation.user;
+package jp.gr.java_conf.simpleblogapi.application.user;
 
-import jp.gr.java_conf.simpleblogapi.application.user.UserSignupArgsDto;
 import jp.gr.java_conf.simpleblogapi.domain.user.RegisterdUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
