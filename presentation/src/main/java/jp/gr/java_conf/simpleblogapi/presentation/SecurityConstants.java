@@ -7,9 +7,8 @@ public class SecurityConstants {
     public static final String LOGIN_API_URL = "/api/user/login";
 
     public static final String[] NO_AUTHORIZATION_REQUIRED_GET_URLS = {
-            "/api/articles",
-            "/api/articlesCount",
-            "/api/articles/*",
+            "/api/article",
+            "/api/article/*",
             "/api/category",
             "/file/*"};
 
