@@ -1,6 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.application.user;
 
-import jp.gr.java_conf.simpleblogapi.application.user.UserSignupArgsDto;
+import jp.gr.java_conf.simpleblogapi.application.user.dto.UserSignupArgsDto;
 import jp.gr.java_conf.simpleblogapi.domain.user.RegisterdUser;
 import jp.gr.java_conf.simpleblogapi.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;

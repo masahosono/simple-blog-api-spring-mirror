@@ -1,4 +1,4 @@
-package jp.gr.java_conf.simpleblogapi.application.user;
+package jp.gr.java_conf.simpleblogapi.application.user.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

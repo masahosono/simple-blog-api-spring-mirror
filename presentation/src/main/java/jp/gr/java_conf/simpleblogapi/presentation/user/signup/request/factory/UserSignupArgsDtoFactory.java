@@ -1,6 +1,6 @@
 package jp.gr.java_conf.simpleblogapi.presentation.user.signup.request.factory;
 
-import jp.gr.java_conf.simpleblogapi.application.user.UserSignupArgsDto;
+import jp.gr.java_conf.simpleblogapi.application.user.dto.UserSignupArgsDto;
 import jp.gr.java_conf.simpleblogapi.presentation.user.signup.request.UserSignupRequest;
 import org.springframework.stereotype.Component;
 
