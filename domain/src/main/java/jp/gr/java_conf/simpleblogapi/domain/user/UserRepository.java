@@ -5,4 +5,7 @@ public interface UserRepository {
     void registerUser(
             String userId,
             String password);
+
+    RegisterdUser getUser(String userId);
+
 }
