@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 public class UserLoginRequest {
 
-    @JsonProperty("username")
-    private String username;
+    @JsonProperty("userId")
+    private String userId;
 
     @JsonProperty("password")
     private String password;
