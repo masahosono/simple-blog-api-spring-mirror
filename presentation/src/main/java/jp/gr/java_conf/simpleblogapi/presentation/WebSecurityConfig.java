@@ -25,8 +25,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, NO_AUTHORIZATION_REQUIRED_GET_URLS).permitAll()
-                .antMatchers(HttpMethod.POST, NO_AUTHORIZATION_REQUIRED_POST_URLS).permitAll()
+                // 一時的にすべてのエンドポイントに対してpermitAll
+                .antMatchers(HttpMethod.GET).permitAll()
+                .antMatchers(HttpMethod.POST).permitAll()
+//                .antMatchers(HttpMethod.GET, NO_AUTHORIZATION_REQUIRED_GET_URLS).permitAll()
+//                .antMatchers(HttpMethod.POST, NO_AUTHORIZATION_REQUIRED_POST_URLS).permitAll()
                 .antMatchers(HttpMethod.PUT).permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
