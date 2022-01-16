@@ -10,10 +10,10 @@ import lombok.Getter;
 public class GetArticleResponse {
 
     @JsonProperty("result")
-    @Schema(description = "成功時のレスポンス", required = true)
+    @Schema(description = "成功時のレスポンス")
     private ResultResponse result;
 
     @JsonProperty("error")
-    @Schema(description = "エラーレスポンス", required = true)
+    @Schema(description = "エラーレスポンス")
     private ErrorResponse error;
 }
