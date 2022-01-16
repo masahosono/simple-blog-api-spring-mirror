@@ -1,5 +1,9 @@
 package jp.gr.java_conf.simpleblogapi.presentation.article;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jp.gr.java_conf.simpleblogapi.application.article.DeleteArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.EditArticleService;
 import jp.gr.java_conf.simpleblogapi.application.article.GetArticleByIdService;
@@ -46,6 +50,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "記事API")
 @RestController
 @Component
 @RequiredArgsConstructor
@@ -75,6 +80,7 @@ public class ArticleController {
     private final DeleteArticleResponseFactory deleteArticleResponseFactory;
     private final DeleteArticleResponseEntityFactory deleteArticleResponseEntityFactory;
 
+    @Operation(summary = "記事取得API", description = "公開済み記事情報の取得と返却を行う")
     @GetMapping(path = "/api/article", produces = "application/json")
     public ResponseEntity<GetArticleResponse> getArticle() {
         GetArticleResponse response;
@@ -89,6 +95,7 @@ public class ArticleController {
         return getArticleResponseEntityFactory.create(response);
     }
 
+    @Operation(summary = "単一記事取得API", description = "指定した記事IDに紐づく記事情報の取得と返却を行う")
     @GetMapping(path = "/api/article/{id}", produces = "application/json")
     public ResponseEntity<GetArticleByIdResponse> getArticleById(
             @PathVariable("id") String id) {
@@ -109,10 +116,11 @@ public class ArticleController {
         return getArticleByIdResponseEntityFactory.create(response);
     }
 
+    @Operation(summary = "記事登録API", description = "新規記事の登録を行う")
     @PostMapping(path = "/api/article", produces = "application/json")
     public ResponseEntity<RegisterArticleResponse> registerArticle(
             @RequestBody RegisterArticleRequest requestBody,
-            RequestedDateTime requestedDateTime) {
+            @Parameter(hidden = true) RequestedDateTime requestedDateTime) {
 
         RegisterArticleResponse response;
         try {
@@ -130,11 +138,12 @@ public class ArticleController {
         return registerArticleResponseEntityFactory.create(response);
     }
 
+    @Operation(summary = "記事編集API", description = "登録済み記事情報の変更を行う")
     @PutMapping(path = "/api/article/{id}", produces = "application/json")
     public ResponseEntity<EditArticleResponse> editArticle(
-            @PathVariable("id") String id,
+            @Schema(description = "記事ID") @PathVariable("id") String id,
             @RequestBody EditArticleRequest requestBody,
-            RequestedDateTime requestedDateTime) {
+            @Parameter(hidden = true) RequestedDateTime requestedDateTime) {
 
         EditArticleResponse response;
         try {
@@ -152,9 +161,10 @@ public class ArticleController {
         return editArticleResponseEntityFactory.create(response);
     }
 
+    @Operation(summary = "記事削除API", description = "登録済み記事情報の削除を行う")
     @DeleteMapping(path = "/api/article/{id}", produces = "application/json")
     public ResponseEntity<DeleteArticleResponse> deleteArticle(
-            @PathVariable("id") String id) {
+            @Schema(description = "記事ID") @PathVariable("id") String id) {
 
         DeleteArticleResponse response;
         try {
