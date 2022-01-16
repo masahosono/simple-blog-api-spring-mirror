@@ -98,7 +98,7 @@ public class ArticleController {
     @Operation(summary = "単一記事取得API", description = "指定した記事IDに紐づく記事情報の取得と返却を行う")
     @GetMapping(path = "/api/article/{id}", produces = "application/json")
     public ResponseEntity<GetArticleByIdResponse> getArticleById(
-            @PathVariable("id") String id) {
+            @Schema(description = "記事ID") @PathVariable("id") String id) {
 
         GetArticleByIdResponse response;
         try {
